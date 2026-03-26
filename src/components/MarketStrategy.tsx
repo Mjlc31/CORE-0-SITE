@@ -37,16 +37,16 @@ export function MarketStrategy() {
   };
 
   return (
-    <section className="py-40 border-t border-white/5">
-      <div className="container mx-auto px-6">
-        <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+    <section className="py-20 md:py-40 border-t border-white/5">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="mb-12 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
           <div>
-            <h2 className="font-display text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4">
+            <h2 className="font-display text-4xl md:text-7xl font-black uppercase tracking-tighter mb-4">
               Os Aquários
             </h2>
-            <p className="font-mono text-core-neon uppercase tracking-[0.2em] text-sm">Estratégia de Mercado</p>
+            <p className="font-mono text-core-neon uppercase tracking-[0.1em] md:tracking-[0.2em] text-xs md:text-sm">Estratégia de Mercado</p>
           </div>
-          <p className="font-mono text-gray-400 max-w-md text-lg">
+          <p className="font-mono text-gray-400 max-w-md text-sm md:text-lg">
             Não operamos em águas rasas. Nossos sistemas são projetados para ambientes onde a falha custa milhões.
           </p>
         </div>
@@ -56,7 +56,7 @@ export function MarketStrategy() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
         >
           {markets.map((market, idx) => {
             const Icon = market.icon;
@@ -64,16 +64,16 @@ export function MarketStrategy() {
               <motion.div 
                 variants={item}
                 key={idx} 
-                className="group relative border border-white/10 bg-core-gray p-10 hover:bg-core-lightgray transition-colors duration-500 cursor-pointer overflow-hidden"
+                className="group relative border border-white/10 bg-core-gray p-6 md:p-10 hover:bg-core-lightgray transition-colors duration-500 cursor-pointer overflow-hidden"
               >
-                <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0">
-                  <ArrowUpRight className="w-6 h-6 text-core-neon" />
+                <div className="absolute top-0 right-0 p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0">
+                  <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-core-neon" />
                 </div>
                 
-                <Icon className="w-10 h-10 text-core-neon mb-10 transform group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
+                <Icon className="w-8 h-8 md:w-10 md:h-10 text-core-neon mb-6 md:mb-10 transform group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
                 
-                <h3 className="font-display text-2xl font-bold uppercase mb-4 tracking-tight">{market.title}</h3>
-                <p className="font-mono text-base text-gray-400 mb-10 leading-relaxed">{market.desc}</p>
+                <h3 className="font-display text-xl md:text-2xl font-bold uppercase mb-3 md:mb-4 tracking-tight">{market.title}</h3>
+                <p className="font-mono text-sm md:text-base text-gray-400 mb-8 md:mb-10 leading-relaxed">{market.desc}</p>
                 
                 <div className="mt-auto border-t border-white/10 pt-6 flex items-center justify-between">
                   <span className="font-mono text-xs text-gray-500 uppercase tracking-widest">Métrica Chave</span>

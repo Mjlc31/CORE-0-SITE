@@ -25,8 +25,8 @@ export function CoreAcronym() {
   };
 
   return (
-    <section className="py-40 border-t border-white/5 relative">
-      <div className="container mx-auto px-6">
+    <section className="py-20 md:py-40 border-t border-white/5 relative">
+      <div className="container mx-auto px-4 md:px-6">
         <motion.div 
           variants={container}
           initial="hidden"
@@ -40,7 +40,7 @@ export function CoreAcronym() {
               key={item.letter}
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
-              className="relative h-[400px] border-r border-b md:border-b-0 border-white/5 bg-core-black p-8 flex flex-col justify-end overflow-hidden group cursor-pointer"
+              className="relative h-[250px] sm:h-[300px] md:h-[400px] border-b md:border-b-0 md:border-r border-white/5 bg-core-black p-6 md:p-8 flex flex-col justify-end overflow-hidden group cursor-pointer last:border-b-0"
             >
               <div className="absolute inset-0 bg-gradient-to-t from-core-emerald/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
@@ -52,14 +52,14 @@ export function CoreAcronym() {
                   color: hoveredIndex === index ? 'rgba(0, 77, 64, 0.4)' : 'rgba(26, 26, 26, 1)'
                 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="absolute -top-10 -right-10 font-display text-[16rem] font-black leading-none select-none pointer-events-none"
+                className="absolute -top-5 -right-5 md:-top-10 md:-right-10 font-display text-[10rem] md:text-[16rem] font-black leading-none select-none pointer-events-none"
               >
                 {item.letter}
               </motion.div>
 
               <div className="relative z-10">
                 <div className="w-8 h-1 bg-core-neon mb-6 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                <h3 className="font-display text-3xl font-bold uppercase mb-4 text-white group-hover:text-core-neon transition-colors duration-300 tracking-tight">
+                <h3 className="font-display text-2xl md:text-3xl font-bold uppercase mb-2 md:mb-4 text-white group-hover:text-core-neon transition-colors duration-300 tracking-tight">
                   {item.title}
                 </h3>
                 <motion.div 
@@ -71,7 +71,7 @@ export function CoreAcronym() {
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <p className="font-mono text-sm text-gray-400 leading-relaxed pt-2">
+                  <p className="font-mono text-xs md:text-sm text-gray-400 leading-relaxed pt-2">
                     {item.desc}
                   </p>
                 </motion.div>
