@@ -108,3 +108,10 @@ body {
 .spotlight-card:hover::before {
   opacity: 1;
 }
+
+@media (max-width: 768px) {
+  .spotlight-card::before {
+    opacity: 1;
+    background: radial-gradient(circle at top right, rgba(0, 255, 65, 0.04), transparent 60%);
+  }
+}

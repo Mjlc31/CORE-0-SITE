@@ -1,5 +1,6 @@
 import { BookOpen, Factory, TrendingUp, ArrowUpRight } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, useInView } from 'motion/react';
+import { useState, useRef, useEffect } from 'react';
 
 const markets = [
   {
@@ -22,6 +23,55 @@ const markets = [
   }
 ];
 
+function MarketCard({ market, index }: { market: typeof markets[0], index: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "-20% 0px -20% 0px" });
+  const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const isActive = isMobile ? isInView : isHovered;
+  const Icon = market.icon;
+
+  const item = {
+    hidden: { opacity: 0, y: 50 },
+    show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 60, damping: 15 } }
+  };
+
+  return (
+    <motion.div 
+      ref={ref}
+      variants={item}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className={`group relative border border-white/10 p-6 md:p-10 transition-colors duration-500 cursor-pointer overflow-hidden ${isActive ? 'bg-core-lightgray' : 'bg-core-gray'}`}
+    >
+      <div className={`absolute top-0 right-0 p-4 md:p-6 transition-all duration-300 transform ${isActive ? 'opacity-100 translate-x-0 translate-y-0' : 'opacity-0 translate-x-4 -translate-y-4'}`}>
+        <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-core-neon" />
+      </div>
+      
+      <Icon className={`w-8 h-8 md:w-10 md:h-10 text-core-neon mb-6 md:mb-10 transform transition-transform duration-500 ${isActive ? 'scale-110' : 'scale-100'}`} strokeWidth={1.5} />
+      
+      <h3 className="font-display text-xl md:text-2xl font-bold uppercase mb-3 md:mb-4 tracking-tight">{market.title}</h3>
+      <p className="font-mono text-sm md:text-base text-gray-400 mb-8 md:mb-10 leading-relaxed">{market.desc}</p>
+      
+      <div className="mt-auto border-t border-white/10 pt-6 flex items-center justify-between">
+        <span className="font-mono text-xs text-gray-500 uppercase tracking-widest">Métrica Chave</span>
+        <span className="font-mono text-sm text-core-neon font-bold">{market.metric}</span>
+      </div>
+      
+      {/* Hover line */}
+      <div className={`absolute bottom-0 left-0 h-1 bg-core-neon transition-all duration-500 ease-out ${isActive ? 'w-full' : 'w-0'}`} />
+    </motion.div>
+  );
+}
+
 export function MarketStrategy() {
   const container = {
     hidden: { opacity: 0 },
@@ -29,11 +79,6 @@ export function MarketStrategy() {
       opacity: 1,
       transition: { staggerChildren: 0.2 }
     }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 50 },
-    show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 60, damping: 15 } }
   };
 
   return (
@@ -58,33 +103,9 @@ export function MarketStrategy() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
         >
-          {markets.map((market, idx) => {
-            const Icon = market.icon;
-            return (
-              <motion.div 
-                variants={item}
-                key={idx} 
-                className="group relative border border-white/10 bg-core-gray p-6 md:p-10 hover:bg-core-lightgray transition-colors duration-500 cursor-pointer overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 p-4 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0">
-                  <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-core-neon" />
-                </div>
-                
-                <Icon className="w-8 h-8 md:w-10 md:h-10 text-core-neon mb-6 md:mb-10 transform group-hover:scale-110 transition-transform duration-500" strokeWidth={1.5} />
-                
-                <h3 className="font-display text-xl md:text-2xl font-bold uppercase mb-3 md:mb-4 tracking-tight">{market.title}</h3>
-                <p className="font-mono text-sm md:text-base text-gray-400 mb-8 md:mb-10 leading-relaxed">{market.desc}</p>
-                
-                <div className="mt-auto border-t border-white/10 pt-6 flex items-center justify-between">
-                  <span className="font-mono text-xs text-gray-500 uppercase tracking-widest">Métrica Chave</span>
-                  <span className="font-mono text-sm text-core-neon font-bold">{market.metric}</span>
-                </div>
-                
-                {/* Hover line */}
-                <div className="absolute bottom-0 left-0 h-1 bg-core-neon w-0 group-hover:w-full transition-all duration-500 ease-out" />
-              </motion.div>
-            );
-          })}
+          {markets.map((market, idx) => (
+            <MarketCard key={idx} market={market} index={idx} />
+          ))}
         </motion.div>
       </div>
     </section>

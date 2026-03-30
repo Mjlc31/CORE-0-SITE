@@ -1,6 +1,7 @@
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Terminal, Activity, Cpu, LineChart } from 'lucide-react';
 import { MagneticWrapper } from './MagneticWrapper';
+import { useRef } from 'react';
 
 const DashboardMockup = () => (
   <motion.div 
@@ -98,6 +99,15 @@ const DashboardMockup = () => (
 );
 
 export function HeroSection() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+
+  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacityBg = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -112,13 +122,18 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
-      <div className="absolute inset-0 bg-grid-pattern z-0 opacity-30" />
-      
-      {/* Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-core-emerald/20 rounded-full blur-[120px] pointer-events-none z-0" />
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
+      <motion.div 
+        style={{ y: yBg, opacity: opacityBg }} 
+        className="absolute inset-0 z-0 pointer-events-none"
+      >
+        <div className="absolute inset-0 bg-grid-pattern opacity-30" />
+        
+        {/* Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-core-emerald/20 rounded-full blur-[120px] pointer-events-none z-0" />
 
-      <DashboardMockup />
+        <DashboardMockup />
+      </motion.div>
 
       {/* Decorative Dots */}
       <div className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20 hidden sm:flex">
