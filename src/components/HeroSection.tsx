@@ -122,34 +122,27 @@ export function HeroSection() {
   };
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0 bg-black">
       <motion.div 
         style={{ y: yBg, opacity: opacityBg }} 
         className="absolute inset-0 z-0 pointer-events-none"
       >
-        <div className="absolute inset-0 bg-grid-pattern opacity-30" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-40" />
         
-        {/* Ambient Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-core-emerald/20 rounded-full blur-[120px] pointer-events-none z-0" />
+        {/* Ambient Deep Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[1000px] md:h-[1000px] bg-core-neon/10 rounded-full blur-[100px] md:blur-[150px] pointer-events-none z-0" />
 
         <DashboardMockup />
       </motion.div>
 
       {/* Decorative Dots */}
       <div className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20 hidden sm:flex">
-        <div className="w-2 h-2 rounded-full border border-core-neon bg-transparent" />
-        <div className="w-2 h-2 rounded-full border border-core-neon bg-transparent" />
+        <div className="w-2 h-2 rounded-full border border-white/20 bg-transparent" />
+        <div className="w-2 h-2 rounded-full border border-core-neon bg-transparent shadow-[0_0_10px_rgba(0,255,65,0.5)]" />
       </div>
       <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20 hidden sm:flex">
-        <div className="w-2 h-2 rounded-full border border-core-neon bg-transparent" />
-        <div className="w-2 h-2 rounded-full border border-core-neon bg-transparent" />
-      </div>
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-        <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
-        <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
-        <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
-        <div className="w-1.5 h-1.5 rounded-full bg-core-neon shadow-[0_0_10px_rgba(0,255,65,0.8)]" />
-        <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+        <div className="w-2 h-2 rounded-full border border-core-neon bg-transparent shadow-[0_0_10px_rgba(0,255,65,0.5)]" />
+        <div className="w-2 h-2 rounded-full border border-white/20 bg-transparent" />
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
@@ -159,36 +152,37 @@ export function HeroSection() {
           animate="show"
           className="flex flex-col items-center max-w-5xl"
         >
-          <motion.div variants={item} className="flex items-center gap-2 md:gap-3 mb-6 md:mb-8 border border-core-emerald/40 bg-core-black/50 px-4 md:px-5 py-2 backdrop-blur-md rounded-full">
-            <Terminal className="w-3 h-3 md:w-4 md:h-4 text-core-neon" />
-            <span className="text-core-neon text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.3em] font-mono">Sistemas de Alta Performance</span>
+          <motion.div variants={item} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-core-neon/20 bg-core-neon/[0.03] text-core-neon text-xs font-mono tracking-[0.2em] uppercase backdrop-blur-sm shadow-[0_0_20px_rgba(0,255,65,0.05)] mb-8">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-core-neon opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-core-neon"></span>
+            </span>
+            Sistemas de Alta Performance
           </motion.div>
 
           <motion.h1 
             variants={item} 
-            className="font-display text-5xl min-[375px]:text-6xl sm:text-7xl md:text-8xl lg:text-[11rem] font-black leading-[0.9] tracking-tighter mb-6 md:mb-8 uppercase flex flex-col items-center"
-            style={{ textShadow: '0 20px 40px rgba(0,0,0,0.8)' }}
+            className="font-display text-5xl min-[375px]:text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black leading-[0.95] tracking-tighter mb-8 flex flex-col items-center"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-300 to-gray-600">CORE</span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-400 to-gray-700">ENGINEERING</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/70">CORE</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-b from-white/90 via-gray-400 to-gray-700">ENGINEERING</span>
           </motion.h1>
 
-          <motion.p variants={item} className="font-mono text-gray-300 text-base sm:text-lg md:text-xl max-w-3xl mb-10 md:mb-12 leading-relaxed tracking-tight bg-core-black/60 backdrop-blur-md p-6 rounded-lg border border-white/10 shadow-2xl">
-            O fim da ineficiência. Construímos arquiteturas determinísticas, imunes a falhas e projetadas para escala brutal. A <strong>espinha dorsal tecnológica</strong> do seu império.
+          <motion.p variants={item} className="font-sans text-gray-400 text-lg sm:text-xl md:text-2xl max-w-3xl mb-12 leading-relaxed tracking-tight bg-[#0a0a0a]/60 backdrop-blur-xl p-8 rounded-[2rem] border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+            O fim da ineficiência. Construímos arquiteturas determinísticas, imunes a falhas e projetadas para escala brutal. A <strong className="text-white font-medium">espinha dorsal tecnológica</strong> do seu império.
           </motion.p>
 
           <motion.div variants={item} className="w-full sm:w-auto">
             <MagneticWrapper className="w-full sm:w-auto">
               <a 
-                href="https://www.instagram.com/core.aiaas/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative overflow-hidden border border-core-neon bg-core-black/50 backdrop-blur-md text-core-neon font-display font-bold text-sm md:text-base px-8 py-4 md:px-12 md:py-5 uppercase tracking-[0.2em] group w-full sm:w-auto text-center rounded-sm hover:bg-core-neon hover:text-black transition-all duration-300 block"
+                href="/diagnostico"
+                className="group relative overflow-hidden flex items-center justify-center gap-3 bg-white text-black font-semibold text-sm md:text-base px-8 py-4 md:px-12 md:py-5 uppercase tracking-[0.15em] w-full sm:w-auto text-center rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)]"
               >
-                <span className="relative z-10 flex items-center justify-center gap-4">
-                  EXPLORAR SOLUÇÕES
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  <Activity className="w-5 h-5 text-core-emerald group-hover:text-black transition-colors" />
+                  INICIAR RAIO-X OPERACIONAL
                 </span>
-                <div className="absolute inset-0 bg-core-neon transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                <div className="absolute inset-0 bg-core-neon transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out" />
               </a>
             </MagneticWrapper>
           </motion.div>

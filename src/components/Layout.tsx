@@ -82,7 +82,7 @@ export function Layout({ children }: { children: ReactNode }) {
             <MagneticWrapper><Link to="/chassi" className="hover:text-white transition-colors block p-2">Chassi</Link></MagneticWrapper>
             <MagneticWrapper><Link to="/mercados" className="hover:text-white transition-colors block p-2">Mercados</Link></MagneticWrapper>
             <MagneticWrapper>
-              <a href="https://www.instagram.com/core.aiaas/" target="_blank" rel="noopener noreferrer" className="text-core-neon border border-core-neon/30 px-6 py-2 hover:bg-core-neon hover:text-black transition-all duration-300 relative overflow-hidden group block">
+              <a href="https://www.instagram.com/core.iafb/" target="_blank" rel="noopener noreferrer" className="text-core-neon border border-core-neon/30 px-6 py-2 hover:bg-core-neon hover:text-black transition-all duration-300 relative overflow-hidden group block">
                 <span className="relative z-10">Terminal</span>
                 <div className="absolute inset-0 bg-core-neon transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
               </a>
@@ -110,7 +110,7 @@ export function Layout({ children }: { children: ReactNode }) {
           <Link to="/manifesto" className="hover:text-white transition-colors border-b border-white/5 pb-4" onClick={() => setMobileMenuOpen(false)}>Manifesto</Link>
           <Link to="/chassi" className="hover:text-white transition-colors border-b border-white/5 pb-4" onClick={() => setMobileMenuOpen(false)}>Chassi</Link>
           <Link to="/mercados" className="hover:text-white transition-colors border-b border-white/5 pb-4" onClick={() => setMobileMenuOpen(false)}>Mercados</Link>
-          <a href="https://www.instagram.com/core.aiaas/" target="_blank" rel="noopener noreferrer" className="text-core-neon border border-core-neon/30 px-6 py-4 text-center hover:bg-core-neon hover:text-black transition-all duration-300 mt-4" onClick={() => setMobileMenuOpen(false)}>
+          <a href="https://www.instagram.com/core.iafb/" target="_blank" rel="noopener noreferrer" className="text-core-neon border border-core-neon/30 px-6 py-4 text-center hover:bg-core-neon hover:text-black transition-all duration-300 mt-4" onClick={() => setMobileMenuOpen(false)}>
             Terminal
           </a>
         </nav>

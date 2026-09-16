@@ -61,12 +61,10 @@ export function TerminalFooter() {
             
             <MagneticWrapper className="w-full md:w-auto">
               <a 
-                href="https://www.instagram.com/core.aiaas/" 
-                target="_blank" 
-                rel="noopener noreferrer"
+                href="/diagnostico"
                 className="w-full md:w-auto relative overflow-hidden border border-core-neon text-core-neon px-6 py-4 md:px-8 md:py-4 text-xs md:text-sm uppercase tracking-[0.2em] group block text-center"
               >
-                <span className="relative z-10 group-hover:text-black transition-colors duration-300">Solicitar Auditoria</span>
+                <span className="relative z-10 group-hover:text-black transition-colors duration-300">Iniciar Raio-X Operacional</span>
                 <div className="absolute inset-0 bg-core-neon transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out" />
               </a>
             </MagneticWrapper>
